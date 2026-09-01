@@ -1,0 +1,454 @@
+/**
+ * Altcord Mobile Responsive Stylesheet
+ * 768px以下のモバイルデバイス向けフルスクリーン切り替え
+ */
+
+/* ─── 画像の縦横比保持ルール (全デバイス共通・変形防止) ─── */
+.attachment-img,
+.attachment-video,
+.discord-sticker,
+.custom-emoji,
+.custom-emoji.jumbo,
+.reaction-emoji-img {
+  height: auto !important;
+  max-width: 100% !important;
+  object-fit: contain !important;
+  aspect-ratio: auto !important;
+}
+
+.message-avatar,
+.autocomplete-avatar,
+.member-avatar,
+.toast-avatar,
+.guild-icon img,
+.embed-author-icon {
+  aspect-ratio: 1 / 1 !important;
+  object-fit: cover !important;
+  border-radius: 50% !important;
+}
+
+.msg-delete-btn:hover {
+  color: #ed4245 !important;
+  background-color: rgba(237, 66, 69, 0.15) !important;
+}
+
+/* ====================================================
+   デスクトップ表示 (画面幅 769px 以上)
+   ==================================================== */
+@media screen and (min-width: 769px) {
+  #app-container {
+    display: flex !important;
+    flex-direction: row !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    overflow: hidden !important;
+  }
+
+  .guilds-nav {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 72px !important;
+    height: 100vh !important;
+    flex-shrink: 0 !important;
+  }
+
+  .channels-sidebar {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 240px !important;
+    height: 100vh !important;
+    flex-shrink: 0 !important;
+    position: static !important;
+    transform: none !important;
+  }
+
+  .chat-main {
+    display: flex !important;
+    flex-direction: column !important;
+    flex: 1 !important;
+    min-width: 0 !important;
+    height: 100vh !important;
+  }
+
+  .chat-body-container {
+    display: flex !important;
+    flex-direction: row !important;
+    flex: 1 !important;
+    min-height: 0 !important;
+    overflow: hidden !important;
+  }
+
+  .chat-center-column {
+    display: flex !important;
+    flex-direction: column !important;
+    flex: 1 !important;
+    min-width: 0 !important;
+    height: 100% !important;
+  }
+
+  .members-sidebar {
+    display: block !important;
+    width: 240px !important;
+    height: 100% !important;
+    flex-shrink: 0 !important;
+    position: static !important;
+    transform: none !important;
+  }
+
+  .mobile-menu-btn {
+    display: none !important;
+  }
+
+  .mobile-drawer-backdrop {
+    display: none !important;
+  }
+}
+
+/* ====================================================
+   モバイル表示 (画面幅 768px 以下)
+   ==================================================== */
+@media screen and (max-width: 768px) {
+  :root {
+    --mobile-nav-h: 46px;
+    --mobile-header-h: 48px;
+  }
+
+  #app-container {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100vw !important;
+    height: 100dvh !important;
+    height: 100vh;
+    overflow: hidden !important;
+    position: relative !important;
+  }
+
+  /* 上部サーバー横スクロールバー */
+  .guilds-nav {
+    display: flex !important;
+    flex-direction: row !important;
+    width: 100vw !important;
+    height: var(--mobile-nav-h) !important;
+    min-height: var(--mobile-nav-h) !important;
+    padding: 0 8px !important;
+    gap: 8px !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    align-items: center !important;
+    border-right: none !important;
+    border-bottom: 2px solid var(--border-color) !important;
+    background-color: var(--bg-tertiary) !important;
+    flex-shrink: 0 !important;
+    z-index: 100 !important;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .guilds-nav .guild-separator {
+    width: 2px !important;
+    height: 26px !important;
+    margin: 0 !important;
+    flex-shrink: 0;
+  }
+
+  .guild-item {
+    width: 36px !important;
+    height: 36px !important;
+    flex-shrink: 0 !important;
+    border-radius: 50% !important;
+  }
+
+  .guild-item.active, .guild-item:hover {
+    border-radius: 10px !important;
+  }
+
+  .guild-icon {
+    width: 36px !important;
+    height: 36px !important;
+    font-size: 15px !important;
+  }
+
+  .guild-icon img {
+    width: 36px !important;
+    height: 36px !important;
+  }
+
+  /* 画面モード 1: チャンネル一覧画面 */
+  body:not(.mobile-view-chat) .channels-sidebar {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100vw !important;
+    flex: 1 !important;
+    min-height: 0 !important;
+    position: static !important;
+    transform: none !important;
+    box-shadow: none !important;
+  }
+
+  body:not(.mobile-view-chat) .chat-main {
+    display: none !important;
+  }
+
+  /* 画面モード 2: チャット全画面表示 */
+  body.mobile-view-chat .channels-sidebar {
+    display: none !important;
+  }
+
+  body.mobile-view-chat .chat-main {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100vw !important;
+    flex: 1 !important;
+    min-height: 0 !important;
+    overflow: hidden !important;
+  }
+
+  .chat-header {
+    height: var(--mobile-header-h) !important;
+    min-height: var(--mobile-header-h) !important;
+    padding: 0 8px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 6px !important;
+    flex-shrink: 0 !important;
+    border-bottom: 1px solid var(--border-color) !important;
+  }
+
+  .header-left {
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    flex: 1 !important;
+    min-width: 0 !important;
+  }
+
+  .header-channel-name {
+    font-size: 15px !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+
+  .header-divider,
+  .header-channel-topic {
+    display: none !important;
+  }
+
+  .header-right {
+    display: flex !important;
+    align-items: center !important;
+    gap: 4px !important;
+    flex-shrink: 0 !important;
+  }
+
+  .search-bar-wrap {
+    width: 85px !important;
+  }
+
+  .search-bar-wrap:focus-within {
+    width: 130px !important;
+  }
+
+  .search-input-box input {
+    font-size: 13px !important;
+    padding: 4px 18px 4px 6px !important;
+  }
+
+  .mobile-menu-btn {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 38px !important;
+    height: 38px !important;
+    min-width: 38px !important;
+    min-height: 38px !important;
+    background: transparent !important;
+    border: none !important;
+    color: var(--text-header) !important;
+    font-size: 18px !important;
+    cursor: pointer !important;
+    border-radius: 6px !important;
+    flex-shrink: 0 !important;
+    touch-action: manipulation !important;
+    -webkit-tap-highlight-color: transparent !important;
+  }
+
+  .mobile-menu-btn:active {
+    background: var(--bg-modifier-hover) !important;
+  }
+
+  .chat-body-container {
+    flex: 1 !important;
+    min-height: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    overflow: hidden !important;
+    width: 100vw !important;
+    position: relative !important;
+  }
+
+  .chat-center-column {
+    flex: 1 !important;
+    min-height: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    overflow: hidden !important;
+    width: 100vw !important;
+  }
+
+  .messages-wrap {
+    flex: 1 !important;
+    min-height: 0 !important;
+    overflow-y: auto !important;
+    padding: 6px 8px !important;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* メンバーサイドバー (右スライドインドロワー) */
+  .members-sidebar {
+    position: fixed !important;
+    top: var(--mobile-nav-h) !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 260px !important;
+    height: calc(100dvh - var(--mobile-nav-h)) !important;
+    height: calc(100vh - var(--mobile-nav-h));
+    z-index: 500 !important;
+    transform: translateX(100%) !important;
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    box-shadow: -6px 0 24px rgba(0, 0, 0, 0.7) !important;
+    display: block !important;
+  }
+
+  .members-sidebar.mobile-open {
+    transform: translateX(0) !important;
+  }
+
+  .mobile-drawer-backdrop {
+    display: none;
+    position: fixed;
+    inset: 0;
+    top: var(--mobile-nav-h);
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(2px);
+    z-index: 490;
+  }
+
+  .mobile-drawer-backdrop.active {
+    display: block !important;
+  }
+
+  .message-item {
+    padding: 4px 6px !important;
+    gap: 8px !important;
+    border-radius: 6px !important;
+    position: relative !important;
+  }
+
+  .message-avatar {
+    width: 34px !important;
+    height: 34px !important;
+    flex-shrink: 0 !important;
+  }
+
+  .message-author {
+    font-size: 14px !important;
+  }
+
+  .message-body {
+    font-size: 14.5px !important;
+    line-height: 1.4 !important;
+  }
+
+  .message-actions {
+    position: absolute;
+    right: 6px;
+    top: 4px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 2px;
+    display: flex;
+    gap: 2px;
+    z-index: 10;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  }
+
+  .msg-action-btn {
+    width: 34px !important;
+    height: 34px !important;
+    font-size: 14px !important;
+  }
+
+  .chat-input-area {
+    padding: 6px 8px !important;
+    background-color: var(--bg-secondary) !important;
+    border-top: 1px solid var(--border-color) !important;
+    flex-shrink: 0 !important;
+  }
+
+  .chat-form {
+    min-height: 44px !important;
+    border-radius: 10px !important;
+    padding: 4px 6px !important;
+    gap: 4px !important;
+  }
+
+  #message-input,
+  .chat-form [contenteditable="true"],
+  input[type="text"], input[type="password"], input[type="email"], textarea {
+    font-size: 16px !important;
+  }
+
+  #message-input {
+    min-height: 36px !important;
+    max-height: 110px !important;
+    padding: 4px 6px !important;
+  }
+
+  .upload-btn, .send-btn {
+    width: 36px !important;
+    height: 36px !important;
+    min-width: 36px !important;
+    font-size: 17px !important;
+    border-radius: 50% !important;
+    flex-shrink: 0 !important;
+  }
+
+  .toast-container {
+    top: auto !important;
+    bottom: 70px !important;
+    left: 8px !important;
+    right: 8px !important;
+    align-items: stretch !important;
+    z-index: 9999 !important;
+  }
+
+  .altcord-toast {
+    width: 100% !important;
+    max-width: 100% !important;
+    border-radius: 10px !important;
+  }
+
+  .emoji-picker-panel {
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 50dvh !important;
+    border-radius: 16px 16px 0 0 !important;
+    z-index: 600 !important;
+  }
+
+  .autocomplete-panel {
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    border-radius: 12px 12px 0 0 !important;
+    bottom: calc(100% + 2px) !important;
+    z-index: 550 !important;
+  }
+}
